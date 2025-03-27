@@ -1,0 +1,43 @@
+.button {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: rgb(255, 255, 255);
+    background-color: rgb(77, 77, 77);
+    -unity-font-definition: url("project://database/Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Fonts/PerfectDOSVGA437.ttf?fileID=12800000&guid=74a5091d8707f334b9a5c31ef71a64ba&type=3#PerfectDOSVGA437");
+    -unity-font-style: normal;
+    text-overflow: clip;
+    -unity-text-align: middle-center;
+    font-size: 175%;
+    transition-property: translate;
+    transition-duration: 0.1s;
+    border-top-color: rgb(89, 89, 89);
+    border-left-color: rgb(89, 89, 89);
+    border-right-color: rgb(64, 64, 64);
+    border-bottom-color: rgb(64, 64, 64);
+    min-width: 64px;
+    min-height: 64px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: 4px;
+    border-left-width: 4px;
+    transition-timing-function: ease-in;
+}
+
+.header {
+    -unity-text-align: upper-center;
+    -unity-font-definition: url("project://database/Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Fonts/PerfectDOSVGA437.ttf?fileID=12800000&guid=74a5091d8707f334b9a5c31ef71a64ba&type=3#PerfectDOSVGA437");
+    font-size: 250%;
+    margin-top: 10%;
+    color: rgb(255, 255, 255);
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.button:active {
+    translate: 0 2px;
+    transition-property: translate;
+    transition-timing-function: ease-out;
+    transition-duration: 0.025s;
+}
