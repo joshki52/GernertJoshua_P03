@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Game/UI/DefaultUSS.uss?fileID=7433441132597879392&amp;guid=67870ca5f69236c4495026356bdebd96&amp;type=3#DefaultUSS" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; -unity-font-style: normal; align-self: auto; align-content: flex-start; justify-content: flex-start; flex-wrap: nowrap; flex-direction: column; min-width: 256px; max-width: none; max-height: none; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);">
+        <engine:Label text="-You Lost-" name="Title" class="header" style="flex-shrink: 0; font-size: 128px;" />
+        <engine:VisualElement name="Buttons" style="flex-grow: 1; flex-direction: row; align-content: auto; justify-content: center; align-self: center; align-items: flex-start; flex-shrink: 0; height: auto; margin-top: 2%;">
+            <engine:Button text="Õ" name="QuitButton" class="button" style="-unity-font-definition: url(&quot;project://database/Assets/_Game/Fonts/WINGDING.TTF?fileID=12800000&amp;guid=2ee283ec64071f74ea34ef24c7f6059b&amp;type=3#WINGDING&quot;);" />
+            <engine:Button text="Q" name="RestartGameButton" class="button" style="-unity-font-definition: url(&quot;project://database/Assets/_Game/Fonts/WINGDNG3.TTF?fileID=12800000&amp;guid=6947e91a42e30234bad51273c3aa4607&amp;type=3#WINGDNG3&quot;);" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

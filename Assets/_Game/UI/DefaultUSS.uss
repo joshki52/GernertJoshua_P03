@@ -7,22 +7,22 @@
     -unity-font-style: normal;
     text-overflow: clip;
     -unity-text-align: middle-center;
-    font-size: 175%;
+    font-size: 96px;
     transition-property: translate;
     transition-duration: 0.1s;
     border-top-color: rgb(89, 89, 89);
     border-left-color: rgb(89, 89, 89);
     border-right-color: rgb(64, 64, 64);
     border-bottom-color: rgb(64, 64, 64);
-    min-width: 64px;
-    min-height: 64px;
-    border-right-width: 4px;
-    border-bottom-width: 4px;
+    min-width: 224px;
+    min-height: 224px;
+    border-right-width: 16px;
+    border-bottom-width: 16px;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 0;
-    border-top-width: 4px;
-    border-left-width: 4px;
+    border-top-width: 16px;
+    border-left-width: 16px;
     transition-timing-function: ease-in;
 }
 
@@ -40,4 +40,10 @@
     transition-property: translate;
     transition-timing-function: ease-out;
     transition-duration: 0.025s;
+}
+
+.unity-base-slider {
+}
+
+.unity-slider {
 }
