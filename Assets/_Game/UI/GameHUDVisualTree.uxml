@@ -1,8 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="PauseMenuVisualTree" src="project://database/Assets/_Game/UI/PauseMenuVisualTree.uxml?fileID=9197481963319205126&amp;guid=c38e68519965b1946a4c21cebea6bd5d&amp;type=3#PauseMenuVisualTree" />
-    <engine:Template name="PlayerHUDVisualTree" src="project://database/Assets/_Game/UI/PlayerHUDVisualTree.uxml?fileID=9197481963319205126&amp;guid=8620524768ca11c4d947e37cd48d53d5&amp;type=3#PlayerHUDVisualTree" />
     <engine:Template name="LoseMenuVisualTree" src="project://database/Assets/_Game/UI/LoseMenuVisualTree.uxml?fileID=9197481963319205126&amp;guid=d4603004c9e5f59479920c48e5d2eb8b&amp;type=3#LoseMenuVisualTree" />
+    <engine:Template name="PlayerHUDVisualTree" src="project://database/Assets/_Game/UI/PlayerHUDVisualTree.uxml?fileID=9197481963319205126&amp;guid=8620524768ca11c4d947e37cd48d53d5&amp;type=3#PlayerHUDVisualTree" />
     <engine:Instance template="PauseMenuVisualTree" name="PauseMenuVisualTree" style="display: none; flex-grow: 1;" />
-    <engine:Instance template="PlayerHUDVisualTree" name="PlayerHUDVisualTree" style="flex-grow: 1;" />
     <engine:Instance template="LoseMenuVisualTree" name="LoseMenuVisualTree" style="display: none; flex-grow: 1;" />
+    <engine:Instance template="PlayerHUDVisualTree" name="PlayerHUDVisualTree" style="flex-grow: 1; width: auto; margin-right: 0; display: flex; opacity: 1;">
+        <AttributeOverrides element-name="Menus" enabled="true" />
+    </engine:Instance>
 </engine:UXML>

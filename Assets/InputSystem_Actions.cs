@@ -104,7 +104,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""7607c7b6-cd76-4816-beef-bd0341cfe950"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -622,7 +622,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Touch"",
                     ""id"": ""d1a66cc0-6fc5-4383-8742-11e5a725137d"",
                     ""path"": ""OneModifier"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""TouchPoint"",
@@ -630,7 +630,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""modifier"",
+                    ""name"": ""Modifier"",
                     ""id"": ""5bd79210-fc66-44f9-b7ef-85dc9b98782c"",
                     ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
@@ -641,18 +641,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""modifier"",
-                    ""id"": ""22336c17-e6f0-4296-9182-5f906a0e9201"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TouchPoint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
+                    ""name"": ""Binding"",
                     ""id"": ""5f7d7d4f-d9a2-4951-a688-8ca5b076d0b8"",
                     ""path"": ""<Touchscreen>/position"",
                     ""interactions"": """",

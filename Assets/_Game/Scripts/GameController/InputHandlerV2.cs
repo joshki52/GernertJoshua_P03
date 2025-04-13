@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 /********************************************** NOTE ***********************************************
 
@@ -28,13 +29,17 @@ public class InputHandlerV2 : MonoBehaviour
     public Vector2 StartPos { get; private set; }
     public Vector2 TouchPos { get; private set; }
     public bool IsBeingTouched { get; private set; }
+    public Touch Touch { get; private set; }
 
     private GameHUDController _gameHUDController;
-    private bool _allowInput = true;                       // keep track of if input should be blocked for duration of drag
+    private UIDocument _document;
+
+    private bool _blockInputs = false;
 
     private void Awake()
     {
         _gameHUDController = FindAnyObjectByType<GameHUDController>();
+        _document = FindAnyObjectByType<UIDocument>();
     }
 
     private void OnEnable()
@@ -49,9 +54,7 @@ public class InputHandlerV2 : MonoBehaviour
 
     private void Update()
     {
-        if (_allowInput) UpdateTouch();
-        _allowInput = true;
-
+        UpdateTouch();
         // Debug.Log(StartPos + "  " + TouchPos);
     }
 
@@ -60,20 +63,27 @@ public class InputHandlerV2 : MonoBehaviour
         if (Input.touchCount > 0)
         {
             IsBeingTouched = true;
-            Touch touch = Input.GetTouch(0);            // simultaneous touches may require a foreach statement, I haven't tested it
+            Touch = Input.GetTouch(0);            // simultaneous touches may require a foreach statement, I haven't tested it
 
-            switch (touch.phase)                        // for each touchpoint, Unity stores an enum that describes its state
+            switch (Touch.phase)                        // for each touchpoint, Unity stores an enum that describes its state
             {
                 case TouchPhase.Began:                  // fires first frame touch is detected
-                    StartPos = touch.position;          // update public position variables
-                    TouchPos = touch.position;
+                    if (_blockInputs) break;
+                    StartPos = Touch.position;          // update public position variables
+                    TouchPos = Touch.position;
                     break;
 
                 case TouchPhase.Moved:
-                    TouchPos = touch.position;
+                    if (_blockInputs) break;
+                    TouchPos = Touch.position;
                     break;
 
                 case TouchPhase.Ended:                  // fires the frame touch is released
+                    if (_blockInputs)
+                    {
+                        _blockInputs = false;
+                        break;
+                    }
                     StartPos = Vector2.zero;            // reset touch position (not necessary but keeps things clean)
                     TouchPos = Vector2.zero;            
                     break;
@@ -87,6 +97,6 @@ public class InputHandlerV2 : MonoBehaviour
 
     private void OnUIInteract(string buttonName)
     {
-        _allowInput = false;
+        _blockInputs = true;
     }
 }

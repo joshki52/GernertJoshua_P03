@@ -45,7 +45,6 @@ public class GameHUDController : MonoBehaviour
 
         _pauseButtonHUD         = _playerHUDVisualTree.Q("PauseButton") as Button;
         _fireButtonHUD          = _playerHUDVisualTree.Q("FireButton") as Button;
-        //_turretSliderHUD        = _playerHUDVisualTree.Q("TurretSlider") as Slider;
 
         _quitButtonPause        = _pauseMenuVisualTree.Q("QuitButton") as Button;
         _resumeButtonPause      = _pauseMenuVisualTree.Q("ResumeGameButton") as Button;
@@ -57,13 +56,13 @@ public class GameHUDController : MonoBehaviour
         _buttonList.Add(_quitButtonPause);
         _buttonList.Add(_resumeButtonPause);
         _buttonList.Add(_restartButtonPause);
+
+        //SetupPickingMode(); // used so player HUD and touch controls interact correctly during gameplay
     }
 
     private void OnEnable()
     {
         _pauseButtonHUD.RegisterCallback<ClickEvent>(OnPauseButtonHUDClick);
-        //_fireButtonHUD.RegisterCallback<ClickEvent>(OnFireButtonHUDClick);
-        //_turretSliderHUD.RegisterCallback<ClickEvent>(OnTurretSliderHUDClick);
 
         _fireButtonHUD.RegisterCallback<PointerDownEvent>(evt => OnFireButtonHUDClick(evt), TrickleDown.TrickleDown);
 
@@ -71,6 +70,7 @@ public class GameHUDController : MonoBehaviour
         _resumeButtonPause.RegisterCallback<ClickEvent>(OnResumeButtonPauseClick);
         _restartButtonPause.RegisterCallback<ClickEvent>(OnRestartButtonPauseClick);
 
+        // the aforementioned foreach loop
         foreach (Button button in _buttonList)
         {
             string buttonName = button.name.ToString();
@@ -81,29 +81,26 @@ public class GameHUDController : MonoBehaviour
     private void OnDisable()
     {
         _pauseButtonHUD.UnregisterCallback<ClickEvent>(OnPauseButtonHUDClick);
-        //_fireButtonHUD.UnregisterCallback<ClickEvent>(OnFireButtonHUDClick);
-        //_turretSliderHUD.UnregisterCallback<ClickEvent>(OnTurretSliderHUDClick);
 
-        _fireButtonHUD.UnregisterCallback<PointerDownEvent>(OnFireButtonHUDClick);
+        _fireButtonHUD.UnregisterCallback<PointerDownEvent>(evt => OnFireButtonHUDClick(evt), TrickleDown.TrickleDown);
 
         _quitButtonPause.UnregisterCallback<ClickEvent>(OnQuitButtonPauseClick);
         _resumeButtonPause.UnregisterCallback<ClickEvent>(OnResumeButtonPauseClick);
         _restartButtonPause.UnregisterCallback<ClickEvent>(OnRestartButtonPauseClick);
+
+        // the aforementioned foreach loop
+        foreach (Button button in _buttonList)
+        {
+            string buttonName = button.name.ToString();
+            button.UnregisterCallback<PointerDownEvent>(evt => OnUIButtonDown(buttonName), TrickleDown.TrickleDown);
+        }
     }
     private void Start()
     {
         _playerTurret = FindAnyObjectByType<PlayerTurret>();
         if (_playerTurret == null) Debug.Log("Turret not found");
         if (_playerTurret.TryGetComponent(out Weapon weapon)) _weapon = weapon; // find any component that inherits from Weapon
-
-        
     }
-    /*
-    private void Update()
-    {
-        TurretSliderValue = _turretSliderHUD.value;
-    }
-    */
 
     private void OnUIButtonDown(string buttonName)
     {
@@ -120,10 +117,8 @@ public class GameHUDController : MonoBehaviour
 
     private void OnFireButtonHUDClick(PointerDownEvent evt)
     {
-        if (evt.propagationPhase == PropagationPhase.TrickleDown)
-        { 
-
-            Debug.Log("Fire");
+        if (_input.Touch.phase == TouchPhase.Began)
+        {
             _weapon.Fire();
         }
     }
@@ -144,5 +139,15 @@ public class GameHUDController : MonoBehaviour
     private void OnRestartButtonPauseClick(ClickEvent evt)
     {
         _gameController.LoadLevel();
+    }
+
+    private void SetupPickingMode()
+    {
+        // player HUD
+        _playerHUDVisualTree.pickingMode = PickingMode.Position;
+        _playerHUDVisualTree.Q("Menus").pickingMode = PickingMode.Ignore;
+        _playerHUDVisualTree.Q("Controls").pickingMode = PickingMode.Ignore;
+        _playerHUDVisualTree.Q("PauseButton").pickingMode = PickingMode.Position;
+        _playerHUDVisualTree.Q("FireButton").pickingMode = PickingMode.Position;
     }
 }
